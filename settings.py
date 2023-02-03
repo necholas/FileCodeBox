@@ -13,6 +13,7 @@ class Settings:
     DEBUG = config('DEBUG', cast=bool, default=False)
     # 端口
     PORT = config('PORT', cast=int, default=12345)
+    LOCAL_ROOT = config('PORT', cast=int, default=12345)
     # Sqlite数据库文件
     DATABASE_FILE = config('DATABASE_FILE', cast=str, default='data/database.db')
     # Sqlite套接字
@@ -26,7 +27,7 @@ class Settings:
     # 最长天数
     MAX_DAYS = config('MAX_DAYS', cast=int, default=7)
     # 错误次数
-    ERROR_COUNT = config('ERROR_COUNT', cast=int, default=5)
+    ERROR_COUNT = config('ERROR_COUNT', cast=int, default=50)
     # 错误限制分钟数
     ERROR_MINUTE = config('ERROR_MINUTE', cast=int, default=10)
     # 上传次数

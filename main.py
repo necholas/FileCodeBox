@@ -19,6 +19,7 @@ from settings import settings
 app = FastAPI(debug=settings.DEBUG, redoc_url=None, docs_url=None, openapi_url=None)
 
 
+# 触发事件
 @app.on_event('startup')
 async def startup(s: AsyncSession = Depends(get_session)):
     # 初始化数据库
@@ -122,6 +123,13 @@ async def admin_patch(request: Request, s: AsyncSession = Depends(get_session)):
 
 @app.post('/')
 async def index(code: str, ip: str = Depends(error_ip_limit), s: AsyncSession = Depends(get_session)):
+    """
+    上传功能首页
+    :param code:
+    :param ip:
+    :param s:
+    :return:
+    """
     query = select(Codes).where(Codes.code == code)
     info = (await s.execute(query)).scalars().first()
     if not info:
