@@ -1,3 +1,4 @@
+# encoding:utf-8
 import uuid
 
 from starlette.config import Config

@@ -7,8 +7,6 @@ from sqlalchemy.ext.asyncio import AsyncSession
 from starlette.requests import Request
 from starlette.responses import HTMLResponse, FileResponse
 from starlette.staticfiles import StaticFiles
-import os
-import shutil
 from core.utils import error_ip_limit, upload_ip_limit, get_code, storage, delete_expire_files
 from core.depends import admin_required
 from fastapi import FastAPI, Depends, UploadFile, Form, File, HTTPException, BackgroundTasks
