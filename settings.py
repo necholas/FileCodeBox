@@ -3,6 +3,7 @@ import uuid
 
 from starlette.config import Config
 
+# 自动创建配置文件
 # 配置文件.env，存放为data/.env
 config = Config("data/.env")
 

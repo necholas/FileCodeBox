@@ -148,13 +148,15 @@ async def index(code: str, ip: str = Depends(error_ip_limit), s: AsyncSession = 
 @app.get('/banner')
 async def banner(request: Request):
     # 数据库查询config
-    return {
+    req = {
         'detail': '查询成功',
         'data': settings.BANNERS,
         'enable': request.headers.get('pwd', '') == settings.ADMIN_PASSWORD or settings.ENABLE_UPLOAD,
     }
+    return req
 
 
+# 查询分享记录
 @app.get('/select')
 async def get_file(code: str, ip: str = Depends(error_ip_limit), s: AsyncSession = Depends(get_session)):
     # 查出数据库记录
@@ -173,6 +175,7 @@ async def get_file(code: str, ip: str = Depends(error_ip_limit), s: AsyncSession
         return FileResponse(filepath, filename=info.name)
 
 
+# 上传文件
 @app.post('/share', dependencies=[Depends(admin_required)], description='分享文件')
 async def share(background_tasks: BackgroundTasks, text: str = Form(default=None),
                 style: str = Form(default='2'), value: int = Form(default=1), file: UploadFile = File(default=None),

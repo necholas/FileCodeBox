@@ -5,7 +5,7 @@ from fastapi import Header, HTTPException, Request
 
 from settings import settings
 
-
+# 是否需要权限限制
 async def admin_required(pwd: Union[str, None] = Header(default=None), request: Request = None):
     if 'share' in request.url.path:
         if pwd != settings.ADMIN_PASSWORD and not settings.ENABLE_UPLOAD:
